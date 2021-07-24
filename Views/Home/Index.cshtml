@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Article>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using ProgrammingArticles.App_code;
+
+<div class="text-center">
+    <h1>Articles content</h1>
+    @Html.CreateArticleList(Model)
+</div>
