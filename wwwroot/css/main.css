@@ -1,0 +1,124 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, .name{
+    font-family: "Montserrat";
+    color: #000000;
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+
+p {
+    font-family: "Open Sans";
+}
+
+.button-link {
+    text-decoration: none;
+}
+
+.button-link:hover{
+    color: red;
+}
+
+.container {
+    margin: 0 auto;
+    width: 1170px;
+}
+
+.header {
+    filter: drop-shadow(0px 8px 9px rgba(0,0,0,0.16));
+    background: #fff;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+}
+
+.logo-text {
+    padding-top: 18px;
+    font-size: 16px;
+    cursor: default;
+}
+
+.nav-bar_buttons {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center
+}
+
+.nav-bar_button {
+    font-size: 16px;
+    color: #000000;
+    font-family: "Montserrat";
+    margin-right: 30px;
+}
+
+.strip {
+    display: inline-block;
+    width: 1px;
+    height: 38px;
+    background-color: #000000;
+    margin-right: 30px;
+}
+
+.avatar-img {
+    width: 36px;
+    margin-right: 10px;
+    border-radius: 100px;
+}
+
+.main-background {
+    background-color: #f5f5f5;
+}
+
+.title {
+    font-size: 27px;
+    padding-top: 97px;
+    padding-bottom: 30px;
+}
+
+.content-container {
+    margin: 0 auto;
+    width: 1037px;
+}
+
+.flat {
+    height: 1px;
+    background: black;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+.content {
+    padding-top: 12px;
+}
+
+.tag {
+    padding-bottom: 1px;
+}
+
+.description {
+    display: block;
+    width: 717px;
+    height: 91px;
+    padding-left: 18px;
+    padding-top: 13px;
+    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.photo {
+    height: 192px;
+    width: 224px;
+    padding-bottom: 32px;
+}

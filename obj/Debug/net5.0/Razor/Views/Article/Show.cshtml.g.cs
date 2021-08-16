@@ -13,21 +13,21 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\Дима\source\repos\ProgrammingArticles\ProgrammingArticles\Views\_ViewImports.cshtml"
+#line 2 "C:\Users\Дима\source\repos\ProgrammingArticles\ProgrammingArticles\Views\_ViewImports.cshtml"
 using ProgrammingArticles;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Дима\source\repos\ProgrammingArticles\ProgrammingArticles\Views\_ViewImports.cshtml"
+#line 3 "C:\Users\Дима\source\repos\ProgrammingArticles\ProgrammingArticles\Views\_ViewImports.cshtml"
 using ProgrammingArticles.Models;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4c231bd9fb2da14f69c7652b2bc4c1c6b44344fb", @"/Views/Article/Show.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d9dffb6aa1db97912176d2e83da9b613f959402c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"caf309c41df21e749e9637459f0054ed760dd366", @"/Views/_ViewImports.cshtml")]
     public class Views_Article_Show : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ProgrammingArticles.Models.Article>
     {
         #pragma warning disable 1998

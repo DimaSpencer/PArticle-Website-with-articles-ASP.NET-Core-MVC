@@ -70,6 +70,7 @@ namespace ProgrammingArticles
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseDefaultFiles();
 
             app.UseRouting();

@@ -10,7 +10,7 @@ namespace ProgrammingArticles.Services
     {
         Article Get(int id);
         IEnumerable<Article> Get(int[] ids);
-        Task<int> CreateAsync(ArticleModel articleModel);
+        Task<int> CreateAsync(ArticleViewModel articleModel);
         Task DeleteAsync(int id);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ProgrammingArticles.ViewModels
 {
-    public class RegisterModel
+    public class RegisterViewModel
     {
         [Required(ErrorMessage = "Name is required")]
         [StringLength(100, MinimumLength = 2)]

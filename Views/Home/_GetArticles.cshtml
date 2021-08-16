@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Article>
+
+@foreach (var article in Model)
+{
+    <a asp-controller="Article" asp-action="Show" asp-route-id="@article.Id" >@article.Name</a>
+    <p>Creator: @article.Creator </p>
+}

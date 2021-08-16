@@ -3,9 +3,26 @@
     ViewData["Title"] = "Home Page";
 }
 
-@using ProgrammingArticles.App_code;
-
-<div class="text-center">
-    <h1>Articles content</h1>
-    @Html.CreateArticleList(Model)
+<div class="content-container">
+    <h1 class="title">All articles</h1>
+    @foreach (var article in Model)
+    {
+        <div class="article">
+            <div class="flat"></div>
+            <div class="wrapper">
+                <div class="content">
+                    <p class="tag">
+                        #anytag
+                    </p>
+                    <a class="name button-link" asp-action="Show" asp-controller="Article" asp-route-id="@article.Id">
+                        @article.Name  
+                    </a>
+                    <p class="description">
+                        @article.Content.Text  
+                    </p>
+                </div>
+                <img class="photo" src="@article.LogoImage.Path" alt="">
+            </div>
+        </div>
+    }
 </div>

@@ -1,10 +1,11 @@
-﻿using ProgrammingArticles.Models;
+﻿using Microsoft.AspNetCore.Http;
+using ProgrammingArticles.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ProgrammingArticles.ViewModels
 {
-    public class ArticleModel
+    public class ArticleViewModel
     {
         [Required(ErrorMessage ="Invalid name")]
         [StringLength(100, MinimumLength = 2)]
@@ -15,10 +16,10 @@ namespace ProgrammingArticles.ViewModels
         public string Text { get; set; }
 
         [DataType(DataType.ImageUrl)]
-        public string LogoImage { get; set; }
+        public IFormFile LogoImage { get; set; }
 
         [DataType(DataType.ImageUrl)]
-        public string BackgroundImage { get; set; }
+        public IFormFile BackgroundImage { get; set; }
 
         public List<int> TagIds { get; set; }
     }

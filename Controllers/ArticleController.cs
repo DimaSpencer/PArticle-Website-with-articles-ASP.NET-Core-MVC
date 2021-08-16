@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -17,12 +18,15 @@ namespace ProgrammingArticles.Controllers
     public class ArticleController : Controller
     {
         private readonly IArticleService _articleService;
-        public ArticleController(IArticleService articleService)
+        private readonly IWebHostEnvironment _appEnvironment;
+        public ArticleController(IArticleService articleService, IWebHostEnvironment appEnvironment)
         {
             _articleService = articleService;
+            _appEnvironment = appEnvironment;
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Show(int id)
         {
             return View(_articleService.Get(id));
@@ -32,7 +36,7 @@ namespace ProgrammingArticles.Controllers
         public IActionResult Create() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Create(ArticleModel articleModel)
+        public async Task<IActionResult> Create(ArticleViewModel articleModel)
         {
             if (ModelState.IsValid)
             {
@@ -46,7 +50,7 @@ namespace ProgrammingArticles.Controllers
         public async Task<IActionResult> Delete(int articleId)
         {
             await _articleService.DeleteAsync(articleId);
-            return RedirectToAction(); //добавить стрничку оповещени об успешном удалении обьекта
+            return RedirectToAction();
         }
 
         [HttpGet]

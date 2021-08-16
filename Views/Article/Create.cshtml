@@ -1,4 +1,4 @@
-﻿@model ProgrammingArticles.ViewModels.ArticleModel
+﻿@model ProgrammingArticles.ViewModels.ArticleViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -19,12 +19,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="LogoImage" class="control-label"></label>
-                <input type="image" asp-for="LogoImage" class="form-control" />
+                <input type="file" asp-for="LogoImage" class="form-control" />
                 <span asp-validation-for="LogoImage" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BackgroundImage" class="control-label"></label>
-                <input type="image" asp-for="BackgroundImage" class="form-control" />
+                <input type="file" asp-for="BackgroundImage" class="form-control" />
                 <span asp-validation-for="BackgroundImage" class="text-danger"></span>
             </div>
             <div class="form-group">

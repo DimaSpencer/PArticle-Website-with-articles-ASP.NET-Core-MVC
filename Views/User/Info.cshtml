@@ -1,0 +1,43 @@
+﻿@model ProgrammingArticles.Models.User
+
+<h1>Account info</h1>
+<p>Welcome @Model.UserName</p>
+<ul>
+    <li>Your ID: @Model.Id </li>
+    <li>Your email: @Model.Email</li>
+    <li>Your likes: @Model.Likes </li>
+    <li>Your articles: @Model.CreatedArticles.Count </li>
+</ul>
+<p>Change name</p>
+<form method="post" asp-controller="User" asp-action="UpdateName">
+    <input type="text" name="newName" required>
+    <button type="submit">Change</button>
+</form>
+<p>Upload avatar</p>
+<form method="post" asp-controller="User" asp-action="UploadAvatar" enctype="multipart/form-data">
+    <input type="file" name="avatar" required>
+    <button type="submit">Upload</button>
+</form>
+
+<script>
+    var btnCust = '<button type="button" class="btn btn-secondary" title="Add picture tags" ' +
+        'onclick="alert(\'Call your custom code here.\')">' +
+        '<i class="bi-tag"></i>' +
+        '</button>';
+    $("#avatar-1").fileinput({
+        overwriteInitial: true,
+        maxFiledescription: "This is a representative placeholder description for this image.", size: 1500,
+        showClose: false,
+        showCaption: false,
+        browseLabel: '',
+        removeLabel: '',
+        browseIcon: '<i class="bi-folder2-open"></i>',
+        removeIcon: '<i class="bi-x-lg"></i>',
+        removeTitle: 'Cancel or reset changes',
+        elErrorContainer: '#kv-avatar-errors-1',
+        msgErrorClass: 'alert alert-block alert-danger',
+        defaultPreviewContent: '<img src="/samples/default-avatar-male.png" alt="Your Avatar">',
+        layoutTemplates: { main2: '{preview} ' + btnCust + ' {remove} {browse}' },
+        allowedFileExtensions: ["jpg", "png", "gif"]
+    });
+</script>

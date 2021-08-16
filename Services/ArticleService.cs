@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProgrammingArticles.Controllers;
@@ -15,37 +16,52 @@ namespace ProgrammingArticles.Services
     public class ArticleService : IArticleService
     {
         private readonly IHttpContextAccessor _contextAccessor;
+        private readonly IWebHostEnvironment _appEnvironment;
         private readonly AppDbContext _database;
         private readonly UserManager<User> _userManager;
-        public ArticleService(IHttpContextAccessor contextAccessor, AppDbContext database, UserManager<User> userManager)
+        public ArticleService(
+            IHttpContextAccessor contextAccessor,
+            IWebHostEnvironment appEnvironment,
+            AppDbContext database,
+            UserManager<User> userManager)
         {
             _contextAccessor = contextAccessor;
+            _appEnvironment = appEnvironment;
             _database = database;
             _userManager = userManager;
         }
 
-        public async Task<int> CreateAsync(ArticleModel articleModel)
+        public async Task<int> CreateAsync(ArticleViewModel articleModel)
         {
             User creator = await _userManager.GetUserAsync(_contextAccessor.HttpContext.User);
+
             if (creator is null)
                 throw new ArgumentNullException("User cannot be null");
 
             IEnumerable<Tag> tags = new List<Tag>();
             if (articleModel.TagIds != null && articleModel.TagIds.Count > 0)
-                tags = await _database.GetTagsByIdsAsync(articleModel.TagIds);
+                tags = await GetTagsByIdsAsync(articleModel.TagIds);
 
             DateTime now = DateTime.Now;
+
             Article article = new Article
             {
                 Name = articleModel.Name,
                 Content = new ArticleContent(articleModel.Text),
-                LogoImage = articleModel.LogoImage,
-                BackgroundImage = articleModel.BackgroundImage,
                 Creator = creator,
                 Tags = tags,
                 TimeOfCreation = now,
                 LastEditTime = now
             };
+
+            if(articleModel.LogoImage is not null)
+            {
+                await article.SetLogoImageAsync(articleModel.LogoImage, _appEnvironment.WebRootPath, articleModel.LogoImage.FileName);
+            }
+            else
+            {
+                await article.SetLogoImageAsync(articleModel.LogoImage, _appEnvironment.WebRootPath, "DefaultArticlePicture.jpg");
+            }
 
             await _database.Articles.AddAsync(article);
             _database.SaveChanges();
@@ -78,6 +94,18 @@ namespace ProgrammingArticles.Services
             foreach (var id in ids)
                 articles.Add(_database.Articles.FirstOrDefault(a => a.Id == id) ?? throw new Exception("An article with this ID does not exist"));
             return articles;
+        }
+
+        public async Task<IEnumerable<Tag>> GetTagsByIdsAsync(IEnumerable<int> tagIds)
+        {
+            List<Tag> tags = new List<Tag>();
+            foreach (var tadId in tagIds)
+            {
+                Tag tag = await _database.Tags.FirstOrDefaultAsync(tag => tag.Id == tadId);
+                if (tag != null)
+                    tags.Add(tag);
+            }
+            return tags;
         }
     }
 }

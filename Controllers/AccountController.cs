@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ProgrammingArticles.Models;
+using ProgrammingArticles.Services;
 using ProgrammingArticles.ViewModels;
 using System.Threading.Tasks;
 
 namespace ProgrammingArticles.Controllers
 {
+
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
@@ -18,7 +19,7 @@ namespace ProgrammingArticles.Controllers
 
         public AccountController(
             UserManager<User> userManager, 
-            SignInManager<User> signInManager, 
+            SignInManager<User> signInManager,
             ILogger<AccountController> logger)
         {
             _userManager = userManager;
@@ -28,48 +29,35 @@ namespace ProgrammingArticles.Controllers
 
         [HttpGet]
         public IActionResult Login(string returnUrl = null) => 
-            View(new LoginModel { ReturnUrl = returnUrl });
+            View(new LoginViewModel { ReturnUrl = returnUrl });
 
         [HttpGet]
         public IActionResult Register(string returnUrl = null) =>
-            View(new RegisterModel { ReturnUrl = returnUrl });
-
-        [HttpGet]
-        [Authorize]
-        public async Task<IActionResult> Info()
-        {
-            User user = await _userManager.Users
-                .Include(u => u.CreatedArticles)
-                .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
-            return View(user);
-        }
+            View(new RegisterViewModel { ReturnUrl = returnUrl });
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginModel loginModel)
+        public async Task<IActionResult> Login(LoginViewModel loginModel)
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByEmailAsync(loginModel.Email);
+                User user = await _userManager.FindByEmailAsync(loginModel.Email); 
                 var result = await _signInManager.PasswordSignInAsync(
-                    user, loginModel.Password, loginModel.Remember, false);
+                user, loginModel.Password, loginModel.Remember, false);
 
                 if (result.Succeeded)
                 {
                     if (!string.IsNullOrEmpty(loginModel.ReturnUrl) && Url.IsLocalUrl(loginModel.ReturnUrl))
                         return Redirect(loginModel.ReturnUrl);
                     else
-                        return RedirectToAction("Info");
+                        return RedirectToAction("Info", "User");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Неправильный логин и (или) пароль");
-                }
+                ModelState.AddModelError("", "Неправильный логин и (или) пароль");
             }
             return BadRequest(ModelState);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterModel registerModel)
+        public async Task<IActionResult> Register(RegisterViewModel registerModel)
         {
             if (ModelState.IsValid)
             {
@@ -77,8 +65,8 @@ namespace ProgrammingArticles.Controllers
                 if (user == null)
                 {
                     user = new User { UserName = registerModel.Name, Email = registerModel.Email };
-
                     var result = await _userManager.CreateAsync(user, registerModel.Password);
+
                     if (result.Succeeded)
                         return RedirectToAction("Login", "Account");
 
@@ -99,12 +87,6 @@ namespace ProgrammingArticles.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
-        }
-
-        [HttpGet]
-        public IActionResult GetUserData(string id)
-        {
-            return View(_userManager.FindByIdAsync(id));
         }
     }
 }

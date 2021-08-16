@@ -21,7 +21,7 @@ namespace ProgrammingArticles.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View(_dbContext.Articles.Include(a => a.Creator));
+            return View(_dbContext.Articles.Include(a => a.Creator).ToList());
         }
 
         [HttpGet]

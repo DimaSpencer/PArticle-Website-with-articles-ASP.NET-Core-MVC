@@ -6,17 +6,17 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProgrammingArticles.Data;
 
-namespace ProgrammingArticles.Data.Migrations
+namespace ProgrammingArticles.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.4")
+                .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("ArticleTag", b =>
@@ -175,14 +175,17 @@ namespace ProgrammingArticles.Data.Migrations
                     b.Property<string>("BackgroundImage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ContentId")
+                    b.Property<int>("ContentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CreatorId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CreatorId1")
+                    b.Property<string>("CreatorId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("LastEditTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Likes")
+                        .HasColumnType("int");
 
                     b.Property<string>("LogoImage")
                         .HasColumnType("nvarchar(max)");
@@ -190,28 +193,14 @@ namespace ProgrammingArticles.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("TimeOfCreation")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ContentId");
-
-                    b.HasIndex("CreatorId1");
+                    b.HasIndex("CreatorId");
 
                     b.ToTable("Articles");
-                });
-
-            modelBuilder.Entity("ProgrammingArticles.Models.ArticleContent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ArticleContent");
                 });
 
             modelBuilder.Entity("ProgrammingArticles.Models.Tag", b =>
@@ -237,6 +226,9 @@ namespace ProgrammingArticles.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<int>("AvaratId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -248,14 +240,14 @@ namespace ProgrammingArticles.Data.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<int>("Likes")
+                        .HasColumnType("int");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -368,17 +360,66 @@ namespace ProgrammingArticles.Data.Migrations
 
             modelBuilder.Entity("ProgrammingArticles.Models.Article", b =>
                 {
-                    b.HasOne("ProgrammingArticles.Models.ArticleContent", "Content")
-                        .WithMany()
-                        .HasForeignKey("ContentId");
-
                     b.HasOne("ProgrammingArticles.Models.User", "Creator")
                         .WithMany("CreatedArticles")
-                        .HasForeignKey("CreatorId1");
+                        .HasForeignKey("CreatorId");
+
+                    b.OwnsOne("ProgrammingArticles.Models.ArticleContent", "Content", b1 =>
+                        {
+                            b1.Property<int>("ArticleId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Id")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Text")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("ArticleId");
+
+                            b1.ToTable("Contents");
+
+                            b1.WithOwner("Article")
+                                .HasForeignKey("ArticleId");
+
+                            b1.Navigation("Article");
+                        });
 
                     b.Navigation("Content");
 
                     b.Navigation("Creator");
+                });
+
+            modelBuilder.Entity("ProgrammingArticles.Models.User", b =>
+                {
+                    b.OwnsOne("ProgrammingArticles.Models.Picture", "Avatar", b1 =>
+                        {
+                            b1.Property<string>("OwnerId1")
+                                .HasColumnType("nvarchar(450)");
+
+                            b1.Property<int>("Id")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Name")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<int>("OwnerId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Path")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("OwnerId1");
+
+                            b1.ToTable("Pictures");
+
+                            b1.WithOwner("Owner")
+                                .HasForeignKey("OwnerId1");
+
+                            b1.Navigation("Owner");
+                        });
+
+                    b.Navigation("Avatar");
                 });
 
             modelBuilder.Entity("ProgrammingArticles.Models.User", b =>

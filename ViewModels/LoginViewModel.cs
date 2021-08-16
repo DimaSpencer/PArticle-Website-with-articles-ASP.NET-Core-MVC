@@ -2,7 +2,7 @@
 
 namespace ProgrammingArticles.ViewModels
 {
-    public class LoginModel
+    public class LoginViewModel
     {
         [Required(ErrorMessage ="Email is required")]
         [StringLength(100, MinimumLength = 3)]
