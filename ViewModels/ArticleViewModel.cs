@@ -15,11 +15,7 @@ namespace ProgrammingArticles.ViewModels
         [StringLength(20000, MinimumLength = 2)]
         public string Text { get; set; }
 
-        [DataType(DataType.ImageUrl)]
         public IFormFile LogoImage { get; set; }
-
-        [DataType(DataType.ImageUrl)]
-        public IFormFile BackgroundImage { get; set; }
 
         public List<int> TagIds { get; set; }
     }

@@ -15,10 +15,8 @@ namespace ProgrammingArticles.Models
         public string Name { get; set; }
         public IEnumerable<Tag> Tags { get; set; }
 
-        public int LogoImageId { get; set; }
-        public Picture LogoImage { get; set; }
-        public int BackgroundImageId { get; set; }
-        public Picture BackgroundImage { get; set; }
+        public int ArticlePictureId { get; set; }
+        public ArticlePicture ArticlePicture { get; set; }
 
         public int ContentId { get; set; }
         public ArticleContent Content { get; set; }
@@ -37,8 +35,7 @@ namespace ProgrammingArticles.Models
                 await file.CopyToAsync(fileStream);
             }
 
-            Picture picture = new Picture { Name = file.FileName, Path = picturePath, Owner = Creator };
-            LogoImage = picture;
+            ArticlePicture = new ArticlePicture { Name = file.FileName, Path = picturePath, Article = this }; ;
         }
     }
 }

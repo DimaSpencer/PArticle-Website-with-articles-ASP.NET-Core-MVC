@@ -5,7 +5,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     User user = await UserManager.GetUserAsync(User);
-    <img class="avatar-img" src="@user.Avatar.Path" alt="Avatar" >
+    <img class="avatar-img" src="@user?.Avatar?.Path" alt="Avatar" >
     <a class="nav-bar_button button-link" asp-controller="User" asp-action="Info" title="Manage">@User.Identity.Name</a>
 
     <a ></a>

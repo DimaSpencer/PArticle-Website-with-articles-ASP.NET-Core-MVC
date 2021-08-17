@@ -15,7 +15,7 @@
 </form>
 <p>Upload avatar</p>
 <form method="post" asp-controller="User" asp-action="UploadAvatar" enctype="multipart/form-data">
-    <input type="file" name="avatar" required>
+    <input type="file" name="avatar" accept="image/jpeg, image/png" required>
     <button type="submit">Upload</button>
 </form>
 

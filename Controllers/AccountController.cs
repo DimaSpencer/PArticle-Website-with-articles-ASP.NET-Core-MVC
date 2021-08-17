@@ -40,17 +40,21 @@ namespace ProgrammingArticles.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByEmailAsync(loginModel.Email); 
-                var result = await _signInManager.PasswordSignInAsync(
-                user, loginModel.Password, loginModel.Remember, false);
-
-                if (result.Succeeded)
+                User user = await _userManager.FindByEmailAsync(loginModel.Email);
+                if(user is not null)
                 {
-                    if (!string.IsNullOrEmpty(loginModel.ReturnUrl) && Url.IsLocalUrl(loginModel.ReturnUrl))
-                        return Redirect(loginModel.ReturnUrl);
-                    else
-                        return RedirectToAction("Info", "User");
+                    var result = await _signInManager.PasswordSignInAsync(
+                    user, loginModel.Password, loginModel.Remember, false);
+
+                    if (result.Succeeded)
+                    {
+                        if (!string.IsNullOrEmpty(loginModel.ReturnUrl) && Url.IsLocalUrl(loginModel.ReturnUrl))
+                            return Redirect(loginModel.ReturnUrl);
+                        else
+                            return RedirectToAction("Info", "User");
+                    }
                 }
+                
                 ModelState.AddModelError("", "Неправильный логин и (или) пароль");
             }
             return BadRequest(ModelState);

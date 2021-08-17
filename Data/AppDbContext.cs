@@ -15,11 +15,12 @@ namespace ProgrammingArticles.Data
         public DbSet<Article> Articles { get; set; }
         public DbSet<ArticleContent> Contents { get; set; }
         public DbSet<Picture> Pictures { get; set; }
+        public DbSet<UserAvatar> UserAvatars { get; set; }
+        public DbSet<ArticlePicture> ArticlePictures { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
-            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
     }

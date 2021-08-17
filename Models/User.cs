@@ -10,7 +10,7 @@ namespace ProgrammingArticles.Models
     public class User : IdentityUser, IEvaluated
     {
         public int AvatarId { get; set; }
-        public Picture Avatar { get; set; }
+        public UserAvatar Avatar { get; set; }
 
         public Roles Role { get; set; }
         public List<Article> CreatedArticles { get; set; }
@@ -23,8 +23,7 @@ namespace ProgrammingArticles.Models
                 await avatar.CopyToAsync(fileStream);
             }
 
-            Picture picture = new Picture { Name = avatar.FileName, Path = picturePath, Owner = this };
-            Avatar = picture;
+            Avatar = new UserAvatar { Name = avatar.FileName, Path = picturePath, User = this }; ;
         }
     }
 }

@@ -54,14 +54,11 @@ namespace ProgrammingArticles.Services
                 LastEditTime = now
             };
 
-            if(articleModel.LogoImage is not null)
-            {
-                await article.SetLogoImageAsync(articleModel.LogoImage, _appEnvironment.WebRootPath, articleModel.LogoImage.FileName);
-            }
-            else
-            {
-                await article.SetLogoImageAsync(articleModel.LogoImage, _appEnvironment.WebRootPath, "DefaultArticlePicture.jpg");
-            }
+            string picturePath = string.Concat(
+                AppPaths.Pictures,
+                articleModel?.LogoImage?.FileName ?? "default_article-logo.jpg");
+
+            await article.SetLogoImageAsync(articleModel.LogoImage, _appEnvironment.WebRootPath, picturePath);
 
             await _database.Articles.AddAsync(article);
             _database.SaveChanges();
