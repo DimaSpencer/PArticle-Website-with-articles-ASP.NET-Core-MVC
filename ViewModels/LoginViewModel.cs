@@ -14,7 +14,7 @@ namespace ProgrammingArticles.ViewModels
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        public bool Remember { get; set; } = false;
+        public bool RememberMe { get; set; }
         public string ReturnUrl { get; set; }
     }
 }

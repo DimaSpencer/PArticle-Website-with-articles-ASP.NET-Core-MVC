@@ -18,6 +18,7 @@ namespace ProgrammingArticles.Models
 
         public async Task UpdateAvatarAsync(IFormFile avatar, string webRootPath, string picturePath)
         {
+            picturePath = picturePath.Replace(' ', '_');
             using (var fileStream = new FileStream(webRootPath + picturePath, FileMode.Create))
             {
                 await avatar.CopyToAsync(fileStream);

@@ -28,8 +28,10 @@ namespace ProgrammingArticles.Models
 
         public int Likes { get; set; }
 
+        //todo: вынести этот метод кудато, он повторяется
         public async Task SetLogoImageAsync(IFormFile file, string webRootPath, string picturePath)
         {
+            picturePath = picturePath.Replace(' ', '_');
             using (var fileStream = new FileStream(webRootPath + picturePath, FileMode.Create))
             {
                 await file.CopyToAsync(fileStream);

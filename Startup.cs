@@ -36,10 +36,10 @@ namespace ProgrammingArticles
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddMvc()
-                .AddNewtonsoftJson(options =>
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
                 .AddRazorPagesOptions(options =>
-                    options.Conventions.AddPageRoute("/Home/Index", ""));
+                    options.Conventions.AddPageRoute("/Home/Index", ""))
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
@@ -80,6 +80,10 @@ namespace ProgrammingArticles
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });

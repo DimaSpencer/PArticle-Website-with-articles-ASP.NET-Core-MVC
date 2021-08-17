@@ -16,10 +16,10 @@
                 <div class="nav-bar">
                     <h1 class="logo-text">Programming articles</h1>
                     <div class="nav-bar_buttons">
-                        <a class="nav-bar_button button-link" asp-action="Index" asp-controller="Home">Home</a>
-                        <a class="nav-bar_button button-link" asp-acion="Create" asp-controller="Article">Create article</a>
-                        <a class="nav-bar_button button-link" asp-action="About" asp-controller="Home">About</a>
-                        <a class="nav-bar_button button-link" asp-action="MyContact" asp-controller="Home">My contacts</a>
+                        <a class="link-button" asp-action="Index" asp-controller="Home">Home</a>
+                        <a class="link-button" asp-action="Create" asp-controller="Article">Create article</a>
+                        <a class="link-button" asp-action="About" asp-controller="Home">About</a>
+                        <a class="link-button" asp-action="MyContact" asp-controller="Home">My contacts</a>
                         <div class="strip"></div>
                         <partial name="_LoginPartial" />
                     </div>
@@ -28,8 +28,12 @@
         </nav>
     </header>
     <section>
-        <div class="container main-background">
-            @RenderBody()
+        <div class="container">
+            <div class="main-background">
+                <div class="content-container">
+                    @RenderBody()
+                </div>
+            </div>
         </div>
     </section>
     <footer>

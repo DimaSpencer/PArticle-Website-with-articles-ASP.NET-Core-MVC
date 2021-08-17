@@ -3,7 +3,15 @@
     padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6, .name{
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6{
     font-family: "Montserrat";
     color: #000000;
     font-size: 30px;
@@ -14,20 +22,14 @@ p {
     font-family: "Open Sans";
 }
 
-.button-link {
-    text-decoration: none;
-}
-
-.button-link:hover{
-    color: red;
-}
-
 .container {
     margin: 0 auto;
-    width: 1170px;
+    max-width: 1170px;
 }
 
 .header {
+    width: 100%;
+    position: fixed;
     filter: drop-shadow(0px 8px 9px rgba(0,0,0,0.16));
     background: #fff;
 }
@@ -45,25 +47,38 @@ p {
 }
 
 .nav-bar_buttons {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     display: flex;
-    align-items: center
+    align-items: center;
+    text-decoration: none;
 }
 
-.nav-bar_button {
+.link-button {
     font-size: 16px;
     color: #000000;
     font-family: "Montserrat";
     margin-right: 30px;
+    text-decoration: none;
+}
+
+.link-button:hover {
+    color: red;
+}
+
+.button {
+    cursor: pointer;
+    display: inline-block;
+    background: transparent;
+    border: none;
 }
 
 .strip {
     display: inline-block;
     width: 1px;
-    height: 38px;
+    height: 25px;
     background-color: #000000;
-    margin-right: 30px;
+    margin-right: 25px;
 }
 
 .avatar-img {
@@ -74,15 +89,21 @@ p {
 
 .main-background {
     background-color: #f5f5f5;
+    height: 100vh;
+}
+
+.main-background-index {
+    height: 100%;
 }
 
 .title {
     font-size: 27px;
-    padding-top: 97px;
+    padding-top: 50px;
     padding-bottom: 30px;
 }
 
 .content-container {
+    padding-top: 85px;
     margin: 0 auto;
     width: 1037px;
 }
@@ -106,6 +127,10 @@ p {
     padding-bottom: 1px;
 }
 
+.name{
+    font-size: 30px;
+}
+
 .description {
     display: block;
     width: 717px;
@@ -121,4 +146,21 @@ p {
     height: 192px;
     width: 224px;
     padding-bottom: 32px;
+}
+
+.button-img {
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    border: none;
+    border-radius: 100px;
+    margin-right: 10px;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.form {
+    width: auto;
+    height: auto;
 }

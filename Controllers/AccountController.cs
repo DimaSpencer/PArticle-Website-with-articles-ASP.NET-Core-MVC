@@ -44,7 +44,7 @@ namespace ProgrammingArticles.Controllers
                 if(user is not null)
                 {
                     var result = await _signInManager.PasswordSignInAsync(
-                    user, loginModel.Password, loginModel.Remember, false);
+                    user, loginModel.Password, loginModel.RememberMe, false);
 
                     if (result.Succeeded)
                     {
@@ -54,10 +54,9 @@ namespace ProgrammingArticles.Controllers
                             return RedirectToAction("Info", "User");
                     }
                 }
-                
                 ModelState.AddModelError("", "Неправильный логин и (или) пароль");
             }
-            return BadRequest(ModelState);
+            return View(ModelState);
         }
 
         [HttpPost]
@@ -82,7 +81,7 @@ namespace ProgrammingArticles.Controllers
                     ModelState.AddModelError(string.Empty, "User with this email already exists");
                 }
             }
-            return BadRequest(ModelState);
+            return View(ModelState);
         }
 
         [Authorize]

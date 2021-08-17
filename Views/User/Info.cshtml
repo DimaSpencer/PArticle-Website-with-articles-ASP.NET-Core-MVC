@@ -10,13 +10,18 @@
 </ul>
 <p>Change name</p>
 <form method="post" asp-controller="User" asp-action="UpdateName">
-    <input type="text" name="newName" required>
+    <div asp-validation-summary="ModelOnly"></div>
+    <input type="text" name="newName" maxlength="40" required>
     <button type="submit">Change</button>
+    <span asp-validation-for="NormalizedUserName"></span>
 </form>
 <p>Upload avatar</p>
 <form method="post" asp-controller="User" asp-action="UploadAvatar" enctype="multipart/form-data">
     <input type="file" name="avatar" accept="image/jpeg, image/png" required>
     <button type="submit">Upload</button>
+</form>
+<form method="post" asp-controller="Account" asp-action="Logout">
+    <button class="nav-bar_link-button button" type="submit">Logout</button>
 </form>
 
 <script>

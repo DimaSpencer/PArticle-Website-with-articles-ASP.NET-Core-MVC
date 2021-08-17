@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace ProgrammingArticles.Controllers
 {
-    [Route("[controller]/[action]")]
     public class HomeController : Controller
     {
         private readonly AppDbContext _dbContext;
@@ -24,7 +23,7 @@ namespace ProgrammingArticles.Controllers
             return View(_dbContext.Articles.Include(a => a.Creator).ToList());
         }
 
-        [HttpGet]
+        [HttpGet("About")]
         public IActionResult About()
         {
             return View();
