@@ -54,9 +54,9 @@ namespace ProgrammingArticles.Controllers
                             return RedirectToAction("Info", "User");
                     }
                 }
-                ModelState.AddModelError("", "Неправильный логин и (или) пароль");
+                ModelState.AddModelError("", "Incorrect login or password");
             }
-            return View(ModelState);
+            return View(loginModel);
         }
 
         [HttpPost]
@@ -81,7 +81,7 @@ namespace ProgrammingArticles.Controllers
                     ModelState.AddModelError(string.Empty, "User with this email already exists");
                 }
             }
-            return View(ModelState);
+            return View(registerModel);
         }
 
         [Authorize]
@@ -90,6 +90,16 @@ namespace ProgrammingArticles.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        [AcceptVerbs("Get", "Post")]
+        public async Task<IActionResult> EmailIsBusy(string email)
+        {
+            User user = await _userManager.FindByEmailAsync(email);
+            if (user is null)
+                return Json(true);
+            else
+                return Json(false);
         }
     }
 }

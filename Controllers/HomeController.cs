@@ -20,7 +20,10 @@ namespace ProgrammingArticles.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View(_dbContext.Articles.Include(a => a.Creator).ToList());
+            return View(_dbContext.Articles
+                .Include(a => a.Comments)
+                .Include(a => a.Author)
+                .ToList());
         }
 
         [HttpGet("About")]

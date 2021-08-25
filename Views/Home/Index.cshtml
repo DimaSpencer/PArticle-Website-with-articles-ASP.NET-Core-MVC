@@ -4,23 +4,4 @@
 }
 
 <h1 class="title">All articles</h1>
-@foreach (var article in Model)
-{
-    <div class="article">
-        <div class="flat"></div>
-        <div class="wrapper">
-            <div class="content">
-                <p class="tag">
-                    #anytag
-                </p>
-                <a class="link-button name" asp-action="Show" asp-controller="Article" asp-route-id="@article.Id">
-                    @article.Name  
-                </a>
-                <p class="description">
-                    @article.Content.Text  
-                </p>
-            </div>
-            <img class="photo" src="@article.ArticlePicture.Path" alt="">
-        </div>
-    </div>
-}
+@{await Html.RenderPartialAsync("_GetArticles", Model);}

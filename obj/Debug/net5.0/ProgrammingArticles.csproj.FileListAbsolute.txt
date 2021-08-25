@@ -163,5 +163,6 @@ C:\Users\Дима\source\repos\ProgrammingArticles\ProgrammingArticles\obj\Debug
 C:\Users\Дима\source\repos\ProgrammingArticles\ProgrammingArticles\obj\Debug\net5.0\Razor\Views\Article\Show.cshtml.g.cs
 C:\Users\Дима\source\repos\ProgrammingArticles\ProgrammingArticles\obj\Debug\net5.0\ProgrammingArticles.csprojAssemblyReference.cache
 C:\Users\Дима\source\repos\ProgrammingArticles\ProgrammingArticles\obj\Debug\net5.0\Razor\Views\Home\About.cshtml.g.cs
-C:\Users\Дима\source\repos\ProgrammingArticles\ProgrammingArticles\obj\Debug\net5.0\Razor\Views\Home\_GetArticles.cshtml.g.cs
 C:\Users\Дима\source\repos\ProgrammingArticles\ProgrammingArticles\obj\Debug\net5.0\Razor\Views\User\Info.cshtml.g.cs
+C:\Users\Дима\source\repos\ProgrammingArticles\ProgrammingArticles\obj\Debug\net5.0\Razor\Views\Shared\_GetArticles.cshtml.g.cs
+C:\Users\Дима\source\repos\ProgrammingArticles\ProgrammingArticles\obj\Debug\net5.0\Razor\Views\Shared\_GetComments.cshtml.g.cs

@@ -164,3 +164,13 @@ p {
     width: auto;
     height: auto;
 }
+
+.input-validation-error {
+    border: 1px;
+    border-color: red;
+}
+
+.input-validation-valid {
+    border: 1px;
+    border-color: green;
+}

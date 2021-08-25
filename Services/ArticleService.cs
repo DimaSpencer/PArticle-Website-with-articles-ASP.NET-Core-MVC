@@ -48,7 +48,7 @@ namespace ProgrammingArticles.Services
             {
                 Name = articleModel.Name,
                 Content = new ArticleContent(articleModel.Text),
-                Creator = creator,
+                Author = creator,
                 Tags = tags,
                 TimeOfCreation = now,
                 LastEditTime = now
@@ -58,7 +58,7 @@ namespace ProgrammingArticles.Services
                 AppPaths.Pictures,
                 articleModel?.LogoImage?.FileName ?? "default_article-logo.jpg");
 
-            await article.SetLogoImageAsync(articleModel.LogoImage, _appEnvironment.WebRootPath, picturePath);
+            await article.Content.SetLogoImageAsync(articleModel.LogoImage, _appEnvironment.WebRootPath, picturePath);
 
             await _database.Articles.AddAsync(article);
             _database.SaveChanges();
@@ -80,7 +80,8 @@ namespace ProgrammingArticles.Services
         public Article Get(int id)
         {
             return _database.Articles
-                .Include(a=>a.Creator)
+                .Include(a => a.Author)
+                .Include(a => a.Comments)
                 .FirstOrDefault(a => a.Id == id) ?? throw new Exception("An article with this ID does not exist");
         }
 
@@ -104,5 +105,6 @@ namespace ProgrammingArticles.Services
             }
             return tags;
         }
+        
     }
 }

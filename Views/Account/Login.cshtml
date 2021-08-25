@@ -1,26 +1,33 @@
 ﻿@model ProgrammingArticles.ViewModels.LoginViewModel
-
-    <h2>Login</h2>
-    <form method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
-        <div asp-validation-summary="ModelOnly"></div>
-        <div>
-            <label asp-for="Email"></label><br />
-            <input asp-for="Email" />
-            <span asp-validation-for="Email"></span>
-        </div>
-        <div>
-            <label asp-for="Password"></label><br />
-            <input asp-for="Password" />
-            <span asp-validation-for="Password"></span>
-        </div>
-        <div>
-            <label asp-for="RememberMe"></label><br />
-            <input asp-for="RememberMe" />
-        </div>
-        <div>
-            <input type="submit" value="Login" />
-        </div>
-    </form>
+    
+<h2>Login</h2>
+<form method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
+    @*это валидация того когда нажимаешь на кнопку, 
+        проверяються данные уже в контроллере, 
+        если там чтото не так с моделью, то оно появится и мне оповестит*@
+    <div asp-validation-summary="ModelOnly">Incorrect data!</div>
+    <div>
+        @*простой лейб*@
+        <label asp-for="Email"></label><br />
+        @*если input будет содержать ошибку, то для input будет добавлен ещё один клас input-validation-error
+        для того чтобы на всякий изменить стиль, например сделать шрифт красным*@
+        <input asp-for="Email" class="input-validation-error"/>
+        @*это валидация в реальном времени, с помощю атрибутов [Required] [MaxLenght] [Remote]*@
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label asp-for="Password"></label><br />
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div>
+        <label asp-for="RememberMe"></label><br />
+        <input asp-for="RememberMe" />
+    </div>
+    <div>
+        <input type="submit" value="Login" />
+    </div>
+</form>
 
 @section scripts{
 

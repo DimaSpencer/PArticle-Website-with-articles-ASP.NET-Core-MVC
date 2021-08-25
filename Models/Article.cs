@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Threading.Tasks;
@@ -14,30 +15,18 @@ namespace ProgrammingArticles.Models
 
         public string Name { get; set; }
         public IEnumerable<Tag> Tags { get; set; }
-
-        public int ArticlePictureId { get; set; }
-        public ArticlePicture ArticlePicture { get; set; }
-
+        
         public int ContentId { get; set; }
         public ArticleContent Content { get; set; }
 
-        public User Creator { get; set; }
+        public User Author { get; set; }
 
         public DateTime TimeOfCreation { get; set; }
         public DateTime LastEditTime { get; set; }
 
         public int Likes { get; set; }
+        public int Dislikes { get; set; }
 
-        //todo: вынести этот метод кудато, он повторяется
-        public async Task SetLogoImageAsync(IFormFile file, string webRootPath, string picturePath)
-        {
-            picturePath = picturePath.Replace(' ', '_');
-            using (var fileStream = new FileStream(webRootPath + picturePath, FileMode.Create))
-            {
-                await file.CopyToAsync(fileStream);
-            }
-
-            ArticlePicture = new ArticlePicture { Name = file.FileName, Path = picturePath, Article = this }; ;
-        }
+        public List<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

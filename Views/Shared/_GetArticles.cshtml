@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Article>
+
+@foreach (var article in Model)
+{
+    <div class="article">
+        <div class="flat"></div>
+        <div class="wrapper">
+            <div class="content">
+                <a class="autor-ref" href="#">Creator:@article.Author.UserName</a>
+                <p class="tag">
+                    #anytag
+                </p>
+                <a class="link-button name" asp-action="Show" asp-controller="Article" asp-route-id="@article.Id">
+                    @article.Name
+                </a>
+                <p class="description">
+                    @article.Content.Text
+                </p>
+                <ul>
+                    <li>Likes: @article.Likes</li>
+                    <li>Dislikes: @article.Dislikes</li>
+                    <li>Comments: @article.Comments.Count </li>
+                </ul>
+            </div>
+            <img class="photo" src="@article?.Content?.LogoPicture?.Path" alt="">
+        </div>
+    </div>
+}

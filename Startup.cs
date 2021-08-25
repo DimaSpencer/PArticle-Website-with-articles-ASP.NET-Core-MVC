@@ -30,6 +30,9 @@ namespace ProgrammingArticles
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IArticleService, ArticleService>();
+            services.AddTransient<EvaluateService>();
+
+            services.AddHttpContextAccessor();
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

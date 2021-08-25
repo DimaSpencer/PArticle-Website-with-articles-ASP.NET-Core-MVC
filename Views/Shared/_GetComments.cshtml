@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Comment>
+
+<div class="comments">
+    @foreach (var comment in Model)
+    {
+        <div class="comment">
+            <lable>@comment.Writer.UserName: @comment.Text</lable>
+        </div>
+    }
+</div>

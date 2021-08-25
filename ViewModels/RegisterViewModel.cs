@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProgrammingArticles.ViewModels
 {
@@ -9,6 +10,7 @@ namespace ProgrammingArticles.ViewModels
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
+        [Remote(action: "EmailIsBusy", controller: "Account", ErrorMessage = "Email is busy")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "Invalid Email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }

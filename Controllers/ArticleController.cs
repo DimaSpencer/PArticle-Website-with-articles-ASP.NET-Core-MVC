@@ -18,11 +18,12 @@ namespace ProgrammingArticles.Controllers
     public class ArticleController : Controller
     {
         private readonly IArticleService _articleService;
-        private readonly IWebHostEnvironment _appEnvironment;
-        public ArticleController(IArticleService articleService, IWebHostEnvironment appEnvironment)
+        private readonly EvaluateService _evaluateService;
+
+        public ArticleController(IArticleService articleService, EvaluateService evaluateService)
         {
             _articleService = articleService;
-            _appEnvironment = appEnvironment;
+            _evaluateService = evaluateService;
         }
 
         [HttpGet]
@@ -60,6 +61,32 @@ namespace ProgrammingArticles.Controllers
         public IActionResult Edit(Article editingArticle) //придумать систему обновления
         {
             return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Like(int id)
+        {
+            var article = _articleService.Get(id);
+            await _evaluateService.LikeAsync(article);
+
+            return RedirectToAction("Show", new { Id = id });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Dislike(int id)
+        {
+            var article = _articleService.Get(id);
+            await _evaluateService.DislikeAsync(article);
+
+            return RedirectToAction("Show", new { Id = id });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendComment(int id, string text)
+        {
+            var article = _articleService.Get(id);
+            await _evaluateService.SendComment(article, text);
+            return RedirectToAction("Show", new { Id = id });
         }
     }
 }

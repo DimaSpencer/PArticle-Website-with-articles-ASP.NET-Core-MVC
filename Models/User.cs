@@ -7,24 +7,25 @@ using System.Threading.Tasks;
 
 namespace ProgrammingArticles.Models
 {
+
     public class User : IdentityUser, IEvaluated
     {
         public int AvatarId { get; set; }
         public UserAvatar Avatar { get; set; }
-
         public Roles Role { get; set; }
-        public List<Article> CreatedArticles { get; set; }
+
+        public List<Article> CreatedArticles { get; set; } = new List<Article>();
+
         public int Likes { get; set; }
+        public int Dislikes { get; set; }
+        public List<Comment> Comments { get; set; } = new List<Comment>();
 
         public async Task UpdateAvatarAsync(IFormFile avatar, string webRootPath, string picturePath)
         {
-            picturePath = picturePath.Replace(' ', '_');
-            using (var fileStream = new FileStream(webRootPath + picturePath, FileMode.Create))
-            {
-                await avatar.CopyToAsync(fileStream);
-            }
+            var picture = await FileSaver.CreateAndSavePictureAsync<UserAvatar>(avatar, webRootPath, picturePath);
+            picture.User = this;
 
-            Avatar = new UserAvatar { Name = avatar.FileName, Path = picturePath, User = this }; ;
+            Avatar = picture;
         }
     }
 }
