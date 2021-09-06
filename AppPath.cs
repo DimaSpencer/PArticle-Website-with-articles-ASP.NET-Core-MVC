@@ -8,6 +8,6 @@ namespace ProgrammingArticles
 {
     public static class AppPaths
     {
-        public static string Pictures => "/Resources/Images/";
+        public static string Pictures => "/img/";
     }
 }

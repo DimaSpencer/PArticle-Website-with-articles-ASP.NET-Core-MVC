@@ -23,7 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Resources\Images\" />
+    <Folder Include="wwwroot\#source\js\" />
+    <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
 
 </Project>

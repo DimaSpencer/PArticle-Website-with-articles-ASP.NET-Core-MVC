@@ -14,7 +14,7 @@ namespace ProgrammingArticles.Models
         public int Id { get; set; }
 
         public string Name { get; set; }
-        public IEnumerable<Tag> Tags { get; set; }
+        public List<Tag> Tags { get; set; } = new List<Tag>();
         
         public int ContentId { get; set; }
         public ArticleContent Content { get; set; }
@@ -26,7 +26,8 @@ namespace ProgrammingArticles.Models
 
         public int Likes { get; set; }
         public int Dislikes { get; set; }
-
         public List<Comment> Comments { get; set; } = new List<Comment>();
+
+        //public List<User> UsersWhoLiked { get; set; } = new List<User>();
     }
 }

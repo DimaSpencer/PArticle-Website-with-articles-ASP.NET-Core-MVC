@@ -1,7 +1,138 @@
 ﻿@model IEnumerable<Article>
-@{
-    ViewData["Title"] = "Index";
-}
 
-<h1 class="title">All articles</h1>
-@{await Html.RenderPartialAsync("_GetArticles", Model);}
+<div class="nav">
+    <div class="container">
+        <div class="nav__inner">
+            <a href="#" class="nav-item">News&nbsp;IT</a>
+            <a href="#" class="nav-item">Technology</a>
+            <a href="#" class="nav-item">HTML/CSS</a>
+            <a href="#" class="nav-item">JavaScript</a>
+            <a href="#" class="nav-item">C#</a>
+            <a href="#" class="nav-item">Python</a>
+            <a href="#" class="nav-item">Ruby</a>
+            <a href="#" class="nav-item">Kotlin</a>
+            <a href="#" class="nav-item">Java</a>
+            <a href="#" class="nav-item">Hackerman</a>
+            <a href="#" class="nav-item">Others</a>
+        </div>
+    </div>
+</div>
+<div class="body">
+    <div class="container">
+        <div class="body__inner">
+            <div class="body__column body__elements">
+                @{ 
+                    await Html.RenderPartialAsync("_GetArticles", Model); 
+                }
+            </div>
+            <div class="body__column body__side">
+                <div class="body__side-inner">
+                    <h2 class="body__side-title side-title">
+                        Most Popular
+                    </h2>
+                    <div class="body__side-element-box">
+                        <div class="body__side-element">
+                            <div class="body__side-element-title">
+                                <a href="#">lorem Amet Sim Alah Acbar</a>
+                            </div>
+                            <div class="element__data-column body__side-element-data">
+                                <!--	<div class="element__data-calendar element__data-icon">
+                                        July 16, 2021
+                                    </div> -->
+                                <div class="element__data-creator element__data-icon">
+                                    NAgibator 228
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body__side-element">
+                            <div class="body__side-element-title">
+                                <a href="#">lorem Amet Sim Alah Acbarlorem Amet Sim Alah Acbarwef</a>
+                            </div>
+                            <div class="element__data-column body__side-element-data">
+                                <!--	<div class="element__data-calendar element__data-icon">
+                                        July 16, 2021
+                                    </div>  -->
+                                <div class="element__data-creator element__data-icon">
+                                    NAgibator 228
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body__side-element">
+                            <div class="body__side-element-title">
+                                <a href="#">lorem Amet Sim Alah Acbar</a>
+                            </div>
+                            <div class="element__data-column body__side-element-data">
+                                <!--		<div class="element__data-calendar element__data-icon">
+                                            July 16, 2021
+                                        </div> -->
+                                <div class="element__data-creator element__data-icon">
+                                    NAgibator 228
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body__side-element">
+                            <div class="body__side-element-title">
+                                <a href="#">lorem Amet Sim Alah Acbar</a>
+                            </div>
+                            <div class="element__data-column body__side-element-data">
+                                <!--	<div class="element__data-calendar element__data-icon">
+                                        July 16, 2021
+                                    </div> -->
+                                <div class="element__data-creator element__data-icon">
+                                    NAgibator 228
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body__side-element">
+                            <div class="body__side-element-title">
+                                <a href="#">lorem Amet Sim Alah Acbarlorem Amet Sim Alah Acbarwef</a>
+                            </div>
+                            <div class="element__data-column body__side-element-data">
+                                <!--		<div class="element__data-calendar element__data-icon">
+                                            July 16, 2021
+                                        </div>  -->
+                                <div class="element__data-creator element__data-icon">
+                                    NAgibator 228
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body__side-element">
+                            <div class="body__side-element-title">
+                                <a href="#">lorem Amet Sim Alah Acbar</a>
+                            </div>
+                            <div class="element__data-column body__side-element-data">
+                                <!--	<div class="element__data-calendar element__data-icon">
+                                        July 16, 2021
+                                    </div> -->
+                                <div class="element__data-creator element__data-icon">
+                                    NAgibator 228
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="body__tags">
+                    <div class="body__tags-title side-title">
+                        Tags list
+                    </div>
+                    <div class="body__tags-box">
+                        <div class="body__tags-box-inner">
+                            <a href="#" class="body__tags-item">SomeTag</a>
+                            <a href="#" class="body__tags-item">science</a>
+                            <a href="#" class="body__tags-item">lorem</a>
+                            <a href="#" class="body__tags-item">IT</a>
+                            <a href="#" class="body__tags-item">lorem</a>
+                            <a href="#" class="body__tags-item">information</a>
+                            <a href="#" class="body__tags-item">lorem</a>
+                            <a href="#" class="body__tags-item">lorem-ror</a>
+                            <a href="#" class="body__tags-item">qwq</a>
+                            <a href="#" class="body__tags-item">qwereeeq</a>
+                            <a href="#" class="body__tags-item">iplusmole</a>
+                            <a href="#" class="body__tags-item">eeww</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

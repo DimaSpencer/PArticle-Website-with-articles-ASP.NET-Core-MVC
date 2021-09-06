@@ -38,7 +38,7 @@ namespace ProgrammingArticles.Services
             if (creator is null)
                 throw new ArgumentNullException("User cannot be null");
 
-            IEnumerable<Tag> tags = new List<Tag>();
+            List<Tag> tags = new List<Tag>();
             if (articleModel.TagIds != null && articleModel.TagIds.Count > 0)
                 tags = await GetTagsByIdsAsync(articleModel.TagIds);
 
@@ -94,7 +94,7 @@ namespace ProgrammingArticles.Services
             return articles;
         }
 
-        public async Task<IEnumerable<Tag>> GetTagsByIdsAsync(IEnumerable<int> tagIds)
+        public async Task<List<Tag>> GetTagsByIdsAsync(IEnumerable<int> tagIds)
         {
             List<Tag> tags = new List<Tag>();
             foreach (var tadId in tagIds)

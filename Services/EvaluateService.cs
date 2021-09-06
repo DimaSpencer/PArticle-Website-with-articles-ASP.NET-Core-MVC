@@ -14,17 +14,14 @@ namespace ProgrammingArticles.Services
     public class EvaluateService
     {
         private readonly IHttpContextAccessor _contextAccessor;
-        private readonly IWebHostEnvironment _appEnvironment;
         private readonly AppDbContext _database;
         private readonly UserManager<User> _userManager;
         public EvaluateService(
             IHttpContextAccessor contextAccessor,
-            IWebHostEnvironment appEnvironment,
             AppDbContext database,
             UserManager<User> userManager)
         {
             _contextAccessor = contextAccessor;
-            _appEnvironment = appEnvironment;
             _database = database;
             _userManager = userManager;
         }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProgrammingArticles.Models
 {
@@ -21,5 +20,7 @@ namespace ProgrammingArticles.Models
         public int Likes { get; set; }
         public int Dislikes { get; set; }
         public List<Comment> Comments { get; set; } = new List<Comment>();
+
+        //public List<User> UsersWhoLiked { get; set; } = new List<User>();
     }
 }

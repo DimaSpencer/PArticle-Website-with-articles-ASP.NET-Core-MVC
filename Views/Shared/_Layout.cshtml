@@ -1,47 +1,54 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ProgrammingArticles</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/main.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PArticles</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/style.css">
 </head>
 <body>
-    <header class="header">
-        <nav>
+    <div class="wrapper">
+        <header class="header">
             <div class="container">
-                <div class="nav-bar">
-                    <h1 class="logo-text">Programming articles</h1>
-                    <div class="nav-bar_buttons">
-                        <a class="link-button" asp-action="Index" asp-controller="Home">Home</a>
-                        <a class="link-button" asp-action="Create" asp-controller="Article">Create article</a>
-                        <a class="link-button" asp-action="About" asp-controller="Home">About</a>
-                        <a class="link-button" asp-action="MyContact" asp-controller="Home">My contacts</a>
-                        <div class="strip"></div>
-                        <partial name="_LoginPartial" />
+                <div class="header__inner">
+                    <div class="header__logo logo">
+                        <a asp-action="Index" asp-controller="Home">
+                            <img src="~/img/logo.png" alt="logo">
+                        </a>
                     </div>
+                    <div class="header-menu__icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <nav class="header__nav">
+                        <a asp-action="Index" asp-controller="Home" class="header__nav-item">
+                            <span>Home</span>
+                        </a>
+                        <a asp-action="Create" asp-controller="Article" class="header__nav-item">
+                            <span>Create article</span>
+                        </a>
+                        <a asp-action="Contacts" asp-controller="Home" class="header__nav-item">
+                            <span>Contacts</span>
+                        </a>
+                        <a asp-action="AboutUs" asp-controller="Home" class="header__nav-item">
+                            <span>About Us</span>
+                        </a>
+                        @{ await Html.RenderPartialAsync("_LoginPartial"); }
+                    </nav>
                 </div>
             </div>
-        </nav>
-    </header>
-    <section>
-        <div class="container">
-            <div class="main-background">
-                <div class="content-container">
-                    @RenderBody()
-                </div>
-            </div>
-        </div>
-    </section>
-    <footer>
-
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+        </header>
+        <section>
+            @RenderBody();
+        </section>
+        <footer>
+        </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>

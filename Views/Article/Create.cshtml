@@ -3,11 +3,6 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-<h1>Create</h1>
-
-<h4>Article</h4>
-<hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post" asp-controller="Article" asp-action="Create" enctype="multipart/form-data">
@@ -29,6 +24,6 @@
     </div>
 </div>
 
-@section Scripts {
+@*@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+}*@

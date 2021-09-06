@@ -8,17 +8,16 @@
 @if (SignInManager.IsSignedIn(User))
 {
     User user = await UserManager.GetUserAsync(User);
-
-    @*<img class="avatar-img" src="@user?.Avatar?.Path" alt="Avatar">*@
-
-    <form class="form" method="get" asp-action="Info" asp-controller="User">
-        <button class="button-img" type="submit" style="background-image: url( @user?.Avatar?.Path )"  />
-    </form>
-
-    @*<a class="link-button" asp-controller="User" asp-action="Info" title="Manage">@User.Identity.Name</a>*@
+    <a asp-action="Info" asp-controller="User" class="header__nav-item header__nav-item--a">
+        <span>@user.UserName </span>
+    </a>
+    @*<form class="form header__nav-item" method="get" asp-action="Info" asp-controller="User" >
+        <button class="button-img" type="submit" style="background-image: url( @user?.Avatar?.Path )" />
+    </form>*@
 }
 else
 {
-    <a class="link-button" asp-controller="Account" asp-action="Register">Register</a>
-    <a class="link-button" asp-controller="Account" asp-action="Login">Login</a>
+    <a asp-action="Login" asp-controller="Account" class="header__nav-item header__nav-item--a">
+        <span>Sign in</span>
+    </a>
 }
